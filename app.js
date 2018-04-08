@@ -43,15 +43,22 @@ function getHashValue(key) {
 function initialize() {
   $('#timeForm input').on('change', function() {
      time_range = $('input[name=time]:checked', '#timeForm').val();
-     tracks_displayed = false;
-     artists_displayed = false;
+     refresh();
   });
   $('#numResponses').on('change', function() {
      limit = $('#numResponses').val().toString();
      $('#number').html("Number of results: " + limit);
-     tracks_displayed = false;
-     artists_displayed = false;
+     refresh();
   });
+}
+
+function refresh() {
+  if (tracks_displayed) {
+    getTopTracks();
+  }
+  else if (artists_displayed) {
+    getTopArtists();
+  }
 }
 
 function getTopArtists() {
@@ -66,9 +73,6 @@ function getTopArtists() {
         'Authorization': 'Bearer ' + access_token,
       },
       success: function(response) {
-        if (artists_displayed) {
-          return;
-        }
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
           console.log(response.items[i]);
@@ -99,9 +103,6 @@ function getTopTracks(){
         'Authorization': 'Bearer ' + access_token,
       },
       success: function(response) {
-        if (tracks_displayed) {
-          return;
-        }
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
           $('#results').append('<div class="track"><img src=' + response.items[i].album.images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +' <br>' + response.items[i].artists[0].name + ' </h4></div>');
@@ -126,11 +127,15 @@ $(document).ready(function() {
   access_token = getHashValue('access_token');
   if (access_token){
     $('#login-button').addClass("disabled");
-    $('#track-button').removeClass("disabled");
-    $('#artist-button').removeClass("disabled");
+    $('#button-segment').removeClass("disabled");
+    $('#timeForm').removeClass("disabled");
+    $('#numForm').removeClass("disabled");
+
   }
   else {
-    $('#track-button').addClass("disabled");
-    $('#artist-button').addClass("disabled");
+    $('#button-segment').addClass("disabled");
+    $('#timeForm').addClass("disabled");
+    $('#numForm').addClass("disabled");
+
   }
 });
