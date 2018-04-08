@@ -145,6 +145,8 @@ $(document).ready(function() {
   }
   else {
     $('#button-segment').addClass("disabled");
+    $('#track-button').addClass("disabled");
+    $('#artist-button').addClass("disabled");
     $('#timeForm').addClass("disabled");
     $('#numForm').addClass("disabled");
   }
