@@ -2,7 +2,7 @@ let access_token;
 let tracks_displayed = false;
 let artists_displayed = false;
 let limit = '20';
-let time_range = 'medium_term';
+let time_range = 'short_term';
 
 function authorize() {
 
@@ -43,6 +43,14 @@ function getHashValue(key) {
 function initialize() {
   $('#timeForm input').on('change', function() {
      time_range = $('input[name=time]:checked', '#timeForm').val();
+     tracks_displayed = false;
+     artists_displayed = false;
+  });
+  $('#numResponses').on('change', function() {
+     limit = $('#numResponses').val().toString();
+     $('#number').html("Number of results: " + limit);
+     tracks_displayed = false;
+     artists_displayed = false;
   });
 }
 
