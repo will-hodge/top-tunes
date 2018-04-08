@@ -4,8 +4,8 @@ let artists_displayed = false;
 let limit = '20';
 let time_range = 'short_term';
 
+/* adds event listener to login button and authenticates */
 function authorize() {
-
   /* adds an event listener to the button and takes page to created URL */
   document.getElementById('login-button').addEventListener('click', function() {
     let client_id = '698842fbb3c04667be310ea4326af018';
@@ -23,6 +23,7 @@ function authorize() {
   }, false);
 }
 
+/* gets access token from URL */
 function getHashValue(key) {
     if (typeof key !== 'string') {
         key = '';
@@ -40,6 +41,7 @@ function getHashValue(key) {
     return value;
 };
 
+/* adds event listeners to controls */
 function initialize() {
   $('#timeForm input').on('change', function() {
      time_range = $('input[name=time]:checked', '#timeForm').val();
@@ -52,6 +54,7 @@ function initialize() {
   });
 }
 
+/* refreshes display according to updated controls */
 function refresh() {
   if (tracks_displayed) {
     getTopTracks();
@@ -61,6 +64,7 @@ function refresh() {
   }
 }
 
+/* gets the user's top artists */
 function getTopArtists() {
   if(access_token){
     $.ajax({
@@ -91,6 +95,7 @@ function getTopArtists() {
   }
 }
 
+/* gets the user's top tracks */
 function getTopTracks(){
   if(access_token){
     $.ajax({
@@ -125,6 +130,8 @@ $(document).ready(function() {
   authorize();
   initialize();
   access_token = getHashValue('access_token');
+
+  /* enables or disables controls based on authentication */
   if (access_token){
     $('#login').addClass("disabled");
     $('#login-button').addClass("disabled");
