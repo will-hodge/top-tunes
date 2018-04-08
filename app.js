@@ -47,11 +47,11 @@ function initialize() {
      time_range = $('input[name=time]:checked', '#timeForm').val();
      refresh();
   });
-  $('#numResponses').on('change', function() {
-     limit = $('#numResponses').val().toString();
-     $('#number').html("Number of results: " + limit);
-     refresh();
-  });
+  let slider = document.getElementById("numResponses");
+  slider.oninput = function() {
+    limit = $('#numResponses').val().toString();
+    $('#number').html("Number of results: " + limit);
+  }
 }
 
 /* refreshes display according to updated controls */
