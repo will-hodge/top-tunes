@@ -15,13 +15,38 @@
     <div class="three wide column">
       <h1 class="ui header centered">Top Tunes</h1>
       <div class="ui segments">
-        <div class="ui segment">
+        <div class="ui padded segment">
           <button class="ui green fluid button" id="login-button">Login</button>
         </div>
-        <div class="ui segment ">
+        <div class="ui padded segment">
           <button class="ui fluid button" id="track-button" onclick="getTopTracks()">Get top tracks</button>
           <br>
           <button class="ui fluid button" id="artist-button" onclick="getTopArtists()">Get top artists</button>
+        </div>
+        <div class="ui padded segment" id="timeForm">
+          <div class="ui form">
+            <div class="grid">
+              <p>Time period:</p>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="time" value="short_term" checked="checked">
+                  <label>Last 4 weeks</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="time" value="medium_term">
+                  <label>Last 6 months</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="time" value="long_term">
+                  <label>All time</label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

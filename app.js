@@ -1,8 +1,10 @@
 let access_token;
 let tracks_displayed = false;
 let artists_displayed = false;
+let limit = '20';
+let time_range = 'medium_term';
 
-function initialize() {
+function authorize() {
 
   /* adds an event listener to the button and takes page to created URL */
   document.getElementById('login-button').addEventListener('click', function() {
@@ -38,10 +40,20 @@ function getHashValue(key) {
     return value;
 };
 
-function getTopArtists(){
+function initialize() {
+  $('#timeForm input').on('change', function() {
+     time_range = $('input[name=time]:checked', '#timeForm').val();
+  });
+}
+
+function getTopArtists() {
   if(access_token){
     $.ajax({
       url: 'https://api.spotify.com/v1/me/top/artists',
+      data: {
+        limit: limit,
+        time_range: time_range,
+      },
       headers: {
         'Authorization': 'Bearer ' + access_token,
       },
@@ -71,6 +83,10 @@ function getTopTracks(){
   if(access_token){
     $.ajax({
       url: 'https://api.spotify.com/v1/me/top/tracks',
+      data: {
+        limit: limit,
+        time_range: time_range,
+      },
       headers: {
         'Authorization': 'Bearer ' + access_token,
       },
@@ -97,6 +113,7 @@ function getTopTracks(){
 
 
 $(document).ready(function() {
+  authorize();
   initialize();
   access_token = getHashValue('access_token');
   if (access_token){
