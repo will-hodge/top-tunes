@@ -51,6 +51,7 @@ function initialize() {
   slider.oninput = function() {
     limit = $('#numResponses').val().toString();
     $('#number').html("Number of results: " + limit);
+    refresh();
   }
 }
 
