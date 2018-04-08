@@ -15,22 +15,22 @@
       <h1 class="ui header centered">Top Tunes</h1>
       <div class="ui segments">
         <div class="ui segment">
-          <button class="ui green fluid button">Login</button>
+          <button class="ui green fluid button" id="login-button">Login</button>
         </div>
         <div class="ui segment ">
-          <button class="ui fluid button">Get top songs</button>
+          <button class="ui fluid button" onclick="getTopSongs()">Get top songs</button>
           <br>
-          <button class="ui fluid button">Get top artists</button>
+          <button class="ui fluid button" onclick="getTopArtists()">Get top artists</button>
         </div>
       </div>
     </div>
-    <div class="twelve wide column">
-      <div class="ui four column grid">
-        <div class="ui medium images content" id="results">
+    <div class="twelve wide column centered">
+      <div class="ui eight column grid centered">
+        <div class="ui small images content centered" id="results">
         </div>
       </div>
     </div>
   </div>
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
 
 </html>
