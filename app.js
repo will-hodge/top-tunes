@@ -9,7 +9,7 @@ function authorize() {
   /* adds an event listener to the button and takes page to created URL */
   document.getElementById('login-button').addEventListener('click', function() {
     let client_id = '698842fbb3c04667be310ea4326af018';
-    let redirect_uri = 'http://127.0.0.1:3000';
+    let redirect_uri = 'https://will-hodge.github.io/top-tunes/';
     let scopes = 'user-top-read';
 
     /* creates authorization URL */
