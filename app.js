@@ -137,8 +137,7 @@ $(document).ready(function() {
 
   /* enables or disables controls based on authentication */
   if (access_token){
-    $('#login').addClass("disabled");
-    $('#login-button').addClass("disabled");
+    $('#login').css('display', 'none');
     $('#button-segment').removeClass("disabled");
     $('#timeForm').removeClass("disabled");
     $('#numForm').removeClass("disabled");
