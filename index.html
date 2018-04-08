@@ -12,9 +12,9 @@
 <body>
   <br>
   <div class="ui doubling stackable grid container">
-    <div class="three wide column">
+    <div class="three wide column centered sidebar">
       <h1 class="ui header centered">Top Tunes</h1>
-      <div class="ui segments">
+      <div class="ui segments centered">
         <div class="ui padded segment">
           <button class="ui green fluid button" id="login-button">Login</button>
         </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="ui padded segment" id="timeForm">
           <div class="ui form">
-            <div class="grid">
+            <div class="grid" id="timeEntry">
               <p>Time period:</p>
               <div class="field">
                 <div class="ui radio checkbox">
@@ -47,6 +47,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="ui padded segment form" id="numForm">
+          <p id="number">Number of results: 20</p>
+          <input type="range" min="1" max="50" value="20" class="slider" id="numResponses">
         </div>
       </div>
     </div>
