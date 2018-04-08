@@ -7,8 +7,9 @@ function initialize() {
   /* adds an event listener to the button and takes page to created URL */
   document.getElementById('login-button').addEventListener('click', function() {
     let client_id = '698842fbb3c04667be310ea4326af018';
-    let redirect_uri = 'https://will-hodge.github.io/top-tunes/';
+    let redirect_uri = 'http://127.0.0.1:3000';
     let scopes = 'user-top-read';
+
     /* creates authorization URL */
     let url = 'https://accounts.spotify.com/authorize';
     url += '?response_type=token';
@@ -79,7 +80,7 @@ function getTopTracks(){
         }
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
-          $('#results').append('<div class="track"><img src=' + response.items[i].album.images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +' –<br>' + response.items[i].artists[0].name + ' </h4></div>');
+          $('#results').append('<div class="track"><img src=' + response.items[i].album.images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +' <br>' + response.items[i].artists[0].name + ' </h4></div>');
         }
         tracks_displayed = true;
         artists_displayed = false;
@@ -99,6 +100,12 @@ $(document).ready(function() {
   initialize();
   access_token = getHashValue('access_token');
   if (access_token){
-    // add disabled class to login button
+    $('#login-button').addClass("disabled");
+    $('#track-button').removeClass("disabled");
+    $('#artist-button').removeClass("disabled");
+  }
+  else {
+    $('#track-button').addClass("disabled");
+    $('#artist-button').addClass("disabled");
   }
 });
