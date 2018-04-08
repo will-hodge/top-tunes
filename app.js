@@ -1,13 +1,13 @@
 let access_token;
-let songs_retrieved = false;
-let artists_retrieved = false;
+let tracks_displayed = false;
+let artists_displayed = false;
 
 function initialize() {
 
   /* adds an event listener to the button and takes page to created URL */
   document.getElementById('login-button').addEventListener('click', function() {
     let client_id = '698842fbb3c04667be310ea4326af018';
-    let redirect_uri = 'http://127.0.0.1:3000';
+    let redirect_uri = 'https://will-hodge.github.io/projects/top-tunes';
     let scopes = 'user-top-read';
     /* creates authorization URL */
     let url = 'https://accounts.spotify.com/authorize';
@@ -45,14 +45,16 @@ function getTopArtists(){
         'Authorization': 'Bearer ' + access_token,
       },
       success: function(response) {
-        if (artists_retrieved) {
+        if (artists_displayed) {
           return;
         }
+        $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
           console.log(response.items[i]);
-          $('#results').append('<img src=' + response.items[i].images[0].url + '>');
+          $('#results').append('<div class="artist"><img src=' + response.items[i].images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +'</h4></div>');
         }
-        artists_retrieved = true;
+        artists_displayed = true;
+        tracks_displayed = false;
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
@@ -61,22 +63,23 @@ function getTopArtists(){
   }
 }
 
-function getTopSongs(){
+function getTopTracks(){
   if(access_token){
     $.ajax({
-      url: 'https://api.spotify.com/v1/me/top/songs',
+      url: 'https://api.spotify.com/v1/me/top/tracks',
       headers: {
         'Authorization': 'Bearer ' + access_token,
       },
       success: function(response) {
-        if (artists_retrieved) {
+        if (tracks_displayed) {
           return;
         }
+        $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
-          console.log(response.items[i]);
-          $('#results').append('<img src=' + response.items[i].images[0].url + '>');
+          $('#results').append('<div class="track"><img src=' + response.items[i].album.images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +' –<br>' + response.items[i].artists[0].name + ' </h4></div>');
         }
-        artists_retrieved = true;
+        tracks_displayed = true;
+        artists_displayed = false;
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
@@ -93,7 +96,3 @@ $(document).ready(function() {
     // add disabled class to login button
   }
 });
-
-function displaySong(uri) {
-  $('#song-display').html("<iframe src=\"https://open.spotify.com/embed?uri=" + uri + "\" frameborder=\"0\" allowtransparency=\"true\"></iframe>");
-}
