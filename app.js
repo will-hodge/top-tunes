@@ -61,6 +61,9 @@ function getTopArtists(){
       },
     });
   }
+  else {
+    alert('Please log in to Spotify');
+  }
 }
 
 function getTopTracks(){
@@ -85,6 +88,9 @@ function getTopTracks(){
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
       },
     });
+  }
+  else {
+    alert('Please log in to Spotify');
   }
 }
 
