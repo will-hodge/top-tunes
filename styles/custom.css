@@ -24,3 +24,11 @@ h4 {
 .sidebar {
   min-width: 250px;
 }
+
+#title {
+  margin-bottom: 0px;
+}
+
+#author {
+  margin-top: 0px;
+}
