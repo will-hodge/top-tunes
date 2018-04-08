@@ -6,6 +6,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/semantic.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="styles/custom.css">
 </head>
 
 <body>
@@ -18,13 +19,14 @@
           <button class="ui green fluid button" id="login-button">Login</button>
         </div>
         <div class="ui segment ">
-          <button class="ui fluid button" onclick="getTopSongs()">Get top songs</button>
+          <button class="ui fluid button" onclick="getTopTracks()">Get top tracks</button>
           <br>
           <button class="ui fluid button" onclick="getTopArtists()">Get top artists</button>
         </div>
       </div>
     </div>
     <div class="twelve wide column centered">
+      <br>
       <div class="ui eight column grid centered">
         <div class="ui small images content centered" id="results">
         </div>
