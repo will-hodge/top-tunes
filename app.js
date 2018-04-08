@@ -84,7 +84,7 @@ function getTopArtists() {
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
           console.log(response.items[i]);
-          $('#results').append('<div class="artist"><img src=' + response.items[i].images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +'</h4></div>');
+          $('#results').append('<div class="artist"><img src=' + response.items[i].images[1].url + '><h4>' + (i+1) + '. ' + response.items[i].name +'</h4></div>');
         }
         artists_displayed = true;
         tracks_displayed = false;
@@ -114,7 +114,7 @@ function getTopTracks(){
       success: function(response) {
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
-          $('#results').append('<div class="track"><img src=' + response.items[i].album.images[0].url + '><h4>' + (i+1) + '. ' + response.items[i].name +' <br>' + response.items[i].artists[0].name + ' </h4></div>');
+          $('#results').append('<div class="track"><img src=' + response.items[i].album.images[1].url + '><h4>' + (i+1) + '. ' + response.items[i].name +' <br>' + response.items[i].artists[0].name + ' </h4></div>');
         }
         tracks_displayed = true;
         artists_displayed = false;
