@@ -61,33 +61,22 @@ function getTopArtists(){
   }
 }
 
-/* TESTING FUNCTION... NOT USED IN FINAL PRODUCTION */
-function searchGenre(){
-  let genre = prompt("Please enter a genre:");
+function getTopSongs(){
   if(access_token){
     $.ajax({
-      url: 'https://api.spotify.com/v1/search',
-      data: {
-        q: 'genre:' + '\"' + genre + '\"',
-        type: 'artist'
-      },
+      url: 'https://api.spotify.com/v1/me/top/songs',
       headers: {
-        'Authorization': 'Bearer ' + access_token
+        'Authorization': 'Bearer ' + access_token,
       },
       success: function(response) {
-        if(response.artists.items.length != 0){
-          console.log(response.artists.items);
-          for (let i = 0; i < 5; i++){
-            alert('Name [' + response.artists.items[i].name + ']' + '\n'
-            + 'Popularity [' + response.artists.items[i].popularity + ']' + '\n'
-            + 'Followers [' + response.artists.items[i].followers.total + ']');
-          }
+        if (artists_retrieved) {
+          return;
         }
-        else {
-          if (genre){
-            alert("No artists found with that genre.");
-          }
+        for (let i = 0; i < response.items.length; i++) {
+          console.log(response.items[i]);
+          $('#results').append('<img src=' + response.items[i].images[0].url + '>');
         }
+        artists_retrieved = true;
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
@@ -101,6 +90,7 @@ $(document).ready(function() {
   initialize();
   access_token = getHashValue('access_token');
   if (access_token){
+    // add disabled class to login button
   }
 });
 
