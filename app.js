@@ -126,16 +126,15 @@ $(document).ready(function() {
   initialize();
   access_token = getHashValue('access_token');
   if (access_token){
+    $('#login').addClass("disabled");
     $('#login-button').addClass("disabled");
     $('#button-segment').removeClass("disabled");
     $('#timeForm').removeClass("disabled");
     $('#numForm').removeClass("disabled");
-
   }
   else {
     $('#button-segment').addClass("disabled");
     $('#timeForm').addClass("disabled");
     $('#numForm').addClass("disabled");
-
   }
 });
