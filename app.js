@@ -9,7 +9,7 @@ function authorize() {
   /* adds an event listener to the button and takes page to created URL */
   document.getElementById('login-button').addEventListener('click', function() {
     let client_id = '698842fbb3c04667be310ea4326af018';
-    let redirect_uri = 'https://will-hodge.github.io/top-tunes/';
+    let redirect_uri = 'http://127.0.0.1:3000';
     let scopes = 'user-top-read';
 
     /* creates authorization URL */
@@ -83,7 +83,11 @@ function getTopArtists() {
       success: function(response) {
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
-          $('#results').append('<div class="artist"><a href="' + response.items[i].external_urls.spotify + '"target="_blank"><img src=' + response.items[i].images[1].url + '></a><h4>' + (i+1) + '. ' + response.items[i].name +'</h4></div>');
+          let name = response.items[i].name;
+          let url = response.items[i].external_urls.spotify;
+          let image = response.items[i].images[1].url;
+
+          $('#results').append('<div class="artist"><a href="' + url + '"target="_blank"><img src=' + image + ' title="' + name + '"></a><h4>' + (i+1) + '. ' + name +'</h4></div>');
         }
         artists_displayed = true;
         tracks_displayed = false;
@@ -118,7 +122,12 @@ function getTopTracks(){
       success: function(response) {
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
-          $('#results').append('<div class="track"><a href="' + response.items[i].external_urls.spotify + '" target="_blank"><img src=' + response.items[i].album.images[1].url + '></a><h4>' + (i+1) + '. ' + response.items[i].name +' <br>' + response.items[i].artists[0].name + ' </h4></div>');
+          let trackName = response.items[i].name;
+          let artistName = response.items[i].artists[0].name;
+          let url = response.items[i].external_urls.spotify;
+          let image = response.items[i].album.images[1].url;
+          
+          $('#results').append('<div class="track"><a href="' + url + '" target="_blank"><img src=' + image + ' title="' + trackName + ' - ' + artistName + '"></a><h4>' + (i+1) + '. ' + trackName +' <br>' + artistName + ' </h4></div>');
         }
         tracks_displayed = true;
         artists_displayed = false;
