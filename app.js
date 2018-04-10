@@ -53,9 +53,7 @@ function initialize() {
     $('#number').html("Number of results: " + limit);
   }
 
-  $('#numResponses').on('change', function() {
-   refresh();
-});
+  $('#numResponses').on('change', refresh);
 }
 
 /* refreshes display according to updated controls */
@@ -65,6 +63,14 @@ function refresh() {
   }
   else if (artists_displayed) {
     getTopArtists();
+  }
+}
+
+function checkWidth() {
+  if ($(window).width() < 1200) {
+    $('html, body').animate({
+      scrollTop: $("#results").offset().top
+    }, 500);
   }
 }
 
@@ -91,11 +97,7 @@ function getTopArtists() {
         }
         artists_displayed = true;
         tracks_displayed = false;
-        if ($(window).width() < 1200) {
-          $('html, body').animate({
-            scrollTop: $("#results").offset().top
-          }, 500);
-        }
+        checkWidth();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
@@ -131,11 +133,7 @@ function getTopTracks(){
         }
         tracks_displayed = true;
         artists_displayed = false;
-        if ($(window).width() < 1200) {
-          $('html, body').animate({
-            scrollTop: $("#results").offset().top
-          }, 500);
-        }
+        checkWidth();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
