@@ -87,6 +87,11 @@ function getTopArtists() {
         }
         artists_displayed = true;
         tracks_displayed = false;
+        if (isMobile.any) {
+          $('html, body').animate({
+            scrollTop: $("#results").offset().top
+          }, 500);
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
@@ -118,6 +123,11 @@ function getTopTracks(){
         }
         tracks_displayed = true;
         artists_displayed = false;
+        if (isMobile.any) {
+          $('html, body').animate({
+            scrollTop: $("#results").offset().top
+          }, 500);
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert('Unable to authorize through Spotify Web API (Error ' + jqXHR.status + ')');
