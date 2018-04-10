@@ -87,7 +87,7 @@ function getTopArtists() {
         }
         artists_displayed = true;
         tracks_displayed = false;
-        if (isMobile.any) {
+        if ($(window).width() < 1200) {
           $('html, body').animate({
             scrollTop: $("#results").offset().top
           }, 500);
@@ -122,7 +122,7 @@ function getTopTracks(){
         }
         tracks_displayed = true;
         artists_displayed = false;
-        if (isMobile.any) {
+        if ($(window).width() < 1200) {
           $('html, body').animate({
             scrollTop: $("#results").offset().top
           }, 500);
