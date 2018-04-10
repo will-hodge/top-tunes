@@ -118,7 +118,6 @@ function getTopTracks(){
       success: function(response) {
         $('#results').empty();
         for (let i = 0; i < response.items.length; i++) {
-          console.log(response.items[i]);
           $('#results').append('<div class="track"><a href="' + response.items[i].external_urls.spotify + '" target="_blank"><img src=' + response.items[i].album.images[1].url + '></a><h4>' + (i+1) + '. ' + response.items[i].name +' <br>' + response.items[i].artists[0].name + ' </h4></div>');
         }
         tracks_displayed = true;
