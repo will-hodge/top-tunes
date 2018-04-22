@@ -17,4 +17,4 @@ Features:
 * Will Hodge
 
 ## Acknowledgments
-* Spotify Web API docs
+* [Spotify Web API docs](https://beta.developer.spotify.com/)
