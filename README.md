@@ -19,3 +19,4 @@ Features:
 
 ## Acknowledgments
 * [Spotify Web API docs](https://beta.developer.spotify.com/)
+* [Semantic UI styling](http://www.semantic-ui.com/)
