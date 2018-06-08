@@ -6,6 +6,7 @@ Features:
 - [x] Display track/artist covers
 - [x] Ability to change timeframe
 - [x] Ability to change number of results
+- [ ] Test out CSS grid layout
 - [ ] Create playlist based on top tracks
 - [ ] Create playlist based on tracks of top artists
 
