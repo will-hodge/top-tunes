@@ -12,7 +12,7 @@ let playlist_url = null;
 function authorize() {
   let client_id = '698842fbb3c04667be310ea4326af018';
   let redirect_uri = 'https://will-hodge.github.io/top-tunes/';
-  let scopes = 'user-top-read playlist-modify-public';
+  let scopes = 'user-top-read playlist-modify-public playlist-modify-private';
 
   /* creates authorization URL */
   let url = 'https://accounts.spotify.com/authorize';
@@ -192,7 +192,8 @@ function buildPlaylist(){
       method: 'POST',
       data: JSON.stringify({
         name: 'Top Tracks - ' + time_range_display,
-        description: 'will-hodge.github.io/top-tunes'
+        description: 'will-hodge.github.io/top-tunes',
+        public: false,
       }),
       headers: {
         'Authorization': 'Bearer ' + access_token,
