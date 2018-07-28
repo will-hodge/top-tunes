@@ -11,7 +11,11 @@ let playlist_url = null;
 
 function authorize() {
   let client_id = '698842fbb3c04667be310ea4326af018';
+<<<<<<< HEAD
   let redirect_uri = 'https://will-hodge.github.io/top-tunes/';
+=======
+  let redirect_uri = 'http://127.0.0.1:3000';
+>>>>>>> 517d00f956e27add865385c37feef47eda71c4d7
   let scopes = 'user-top-read playlist-modify-public playlist-modify-private';
 
   /* creates authorization URL */
