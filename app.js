@@ -8,6 +8,9 @@ let time_range_display = 'last 4 weeks';
 let playlist_uris = [];
 let playlist_id = null;
 let playlist_url = null;
+let d = new Date();
+let date = [d.getMonth(), d.getDate(), d.getFullYear()];
+date = date.join('/');
 
 function authorize() {
   let client_id = '698842fbb3c04667be310ea4326af018';
@@ -192,7 +195,7 @@ function buildPlaylist(){
       method: 'POST',
       data: JSON.stringify({
         name: 'Top Tracks - ' + time_range_display,
-        description: 'will-hodge.github.io/top-tunes',
+        description: 'created on ' + date + ' | will-hodge.github.io/top-tunes',
         public: false,
       }),
       headers: {
