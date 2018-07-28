@@ -10,6 +10,9 @@ body {
 img {
   border-style: groove;
   border-color: grey;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 
 h4 {
@@ -31,4 +34,16 @@ h4 {
 
 #author {
   margin-top: 0px;
+}
+
+#results-container {
+  text-align: center;
+}
+
+.item {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
 }

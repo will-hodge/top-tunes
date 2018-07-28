@@ -17,13 +17,16 @@
       <a href="https://will-hodge.github.io/top-tunes/"><h4 class="ui header centered" id="author">by Will Hodge</h4></a>
       <div class="ui segments centered">
         <div class="ui segment">
-          <p><u>Instructions</u>
+          <p id="instructions">
+            <u>Instructions</u>
             <br>Please authenticate with your Spotify account to see your top tracks and artists.
-            <br><small>Note: no confidental data is accessed or stored in any way&mdash;only your listening activity is used.</small>
+          </p>
+          <p>
+            <small>Note: only your listening activity is accessed&mdash;no data is stored in any way</small>
           </p>
         </div>
         <div class="ui padded segment" id="login">
-          <button class="ui green fluid button" id="login-button">Login</button>
+          <button class="ui green fluid button" id="login-button" onclick="authorize()">Login</button>
         </div>
         <div class="ui padded segment" id="button-segment">
           <button class="ui fluid button" id="track-button" onclick="getTopTracks()">Get top tracks</button>
@@ -63,9 +66,10 @@
     </div>
     <div class="twelve wide column centered">
       <br>
-      <div class="ui eight column grid centered">
-        <div class="ui small images content centered" id="results">
-        </div>
+      <div class="ui eight column centered" id="results-container">
+        <div id="results-header"></div>
+        <br>
+        <div class="ui stackable four column grid container content" id="results"></div>
       </div>
     </div>
   </div>
