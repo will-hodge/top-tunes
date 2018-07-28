@@ -83,7 +83,7 @@ function refresh() {
 function checkWidth() {
   if ($(window).width() < 1200) {
     $('html, body').animate({
-      scrollTop: $("#results").offset().top
+      scrollTop: $("#results-container").offset().top
     }, 500);
   }
 }
