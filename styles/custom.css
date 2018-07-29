@@ -8,11 +8,10 @@ body {
 }
 
 img {
-  border-style: groove;
-  border-color: grey;
   width: 150px;
   height: 150px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 h4 {
