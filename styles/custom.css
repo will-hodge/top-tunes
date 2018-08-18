@@ -46,3 +46,17 @@ h4 {
 .hidden {
   display: none;
 }
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
