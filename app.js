@@ -1,4 +1,4 @@
-let access_token = null;;
+let access_token = null;
 let user_id = null;
 let tracks_displayed = false;
 let artists_displayed = false;
@@ -8,14 +8,14 @@ let time_range_display = 'last 4 weeks';
 let playlist_uris = [];
 let playlist_id = null;
 let playlist_url = null;
-let d = new Date();
+const d = new Date();
 let date = [d.getMonth(), d.getDate(), d.getFullYear()];
 date = date.join('/');
 
 function authorize() {
-  let client_id = '698842fbb3c04667be310ea4326af018';
-  let redirect_uri = 'https://will-hodge.github.io/top-tunes/';
-  let scopes = 'user-top-read playlist-modify-public playlist-modify-private';
+  const client_id = '698842fbb3c04667be310ea4326af018';
+  const redirect_uri = 'https://will-hodge.github.io/top-tunes/';
+  const scopes = 'user-top-read playlist-modify-public playlist-modify-private';
 
   /* creates authorization URL */
   let url = 'https://accounts.spotify.com/authorize';
@@ -29,20 +29,20 @@ function authorize() {
 
 /* gets access token from URL */
 function getHashValue(key) {
-    if (typeof key !== 'string') {
-        key = '';
-    } else {
-        key = key.toLowerCase();
-    }
+  if (typeof key !== 'string') {
+    key = '';
+  } else {
+    key = key.toLowerCase();
+  }
 
-    let keyAndHash = location.hash.match(new RegExp(key + '=([^&]*)'));
-    let value = '';
+  const keyAndHash = location.hash.match(new RegExp(key + '=([^&]*)'));
+  let value = '';
 
-    if (keyAndHash) {
-        value = keyAndHash[1];
-    }
+  if (keyAndHash) {
+    value = keyAndHash[1];
+  }
 
-    return value;
+  return value;
 };
 
 /* adds event listeners to controls */
@@ -51,7 +51,7 @@ function initialize() {
     updateRange();
     refresh();
   });
-  let slider = document.getElementById("numResponses");
+  const slider = document.getElementById("numResponses");
   slider.oninput = function() {
     limit = $('#numResponses').val().toString();
     $('#number').html("Number of results: " + limit);
@@ -96,7 +96,7 @@ function getUserId() {
     $.ajax({
       url: 'https://api.spotify.com/v1/me',
       headers: {
-         'Authorization': 'Bearer ' + access_token
+        'Authorization': 'Bearer ' + access_token
       },
       success: function(response) {
         user_id = response.id;
@@ -113,7 +113,7 @@ function getUserId() {
 /* gets the user's top artists */
 function getTopArtists() {
   $('#artist-button').addClass("loading");
-  if(access_token){
+  if (access_token) {
     $.ajax({
       url: 'https://api.spotify.com/v1/me/top/artists',
       data: {
@@ -131,7 +131,7 @@ function getTopArtists() {
           let name = item.name;
           let url = item.external_urls.spotify;
           let image = item.images[1].url;
-          $('#results').append('<div class="column wide artist item"><a href="' + url + '"target="_blank"><img src=' + image + '></a><h4 class="title">' + (i+1) + '. ' + name +'</h4></div>');
+          $('#results').append('<div class="column wide artist item"><a href="' + url + '"target="_blank"><img src=' + image + '></a><h4 class="title">' + (i + 1) + '. ' + name + '</h4></div>');
         });
 
         artists_displayed = true;
@@ -148,9 +148,9 @@ function getTopArtists() {
 }
 
 /* gets the user's top tracks */
-function getTopTracks(){
+function getTopTracks() {
   $('#track-button').addClass("loading");
-  if(access_token){
+  if (access_token) {
     $.ajax({
       url: 'https://api.spotify.com/v1/me/top/tracks',
       data: {
@@ -171,7 +171,7 @@ function getTopTracks(){
           let artistName = item.artists[0].name;
           let url = item.external_urls.spotify;
           let image = item.album.images[1].url;
-          $('#results').append('<div class="column wide track item"><a href="' + url + '" target="_blank"><img src=' + image + '></a><h4>' + (i+1) + '. ' + trackName +' <br>' + artistName + ' </h4></div>');
+          $('#results').append('<div class="column wide track item"><a href="' + url + '" target="_blank"><img src=' + image + '></a><h4>' + (i + 1) + '. ' + trackName + ' <br>' + artistName + ' </h4></div>');
         });
         tracks_displayed = true;
         artists_displayed = false;
@@ -188,10 +188,10 @@ function getTopTracks(){
 
 
 /* builds playlist of top songs */
-function buildPlaylist(){
-  if(access_token){
+function buildPlaylist() {
+  if (access_token) {
     $.ajax({
-      url: 'https://api.spotify.com/v1/users/'+ encodeURIComponent(user_id) + '/playlists',
+      url: 'https://api.spotify.com/v1/users/' + encodeURIComponent(user_id) + '/playlists',
       method: 'POST',
       data: JSON.stringify({
         name: 'Top Tracks - ' + time_range_display,
@@ -218,7 +218,7 @@ function buildPlaylist(){
 
 function populatePlaylist() {
   $.ajax({
-    url: 'https://api.spotify.com/v1/users/'+ encodeURIComponent(user_id) + '/playlists/' + encodeURIComponent(playlist_id) + '/tracks',
+    url: 'https://api.spotify.com/v1/users/' + encodeURIComponent(user_id) + '/playlists/' + encodeURIComponent(playlist_id) + '/tracks',
     method: 'POST',
     data: JSON.stringify({
       uris: playlist_uris,
