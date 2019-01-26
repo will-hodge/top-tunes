@@ -9,7 +9,7 @@ let playlist_uris = [];
 let playlist_id = null;
 let playlist_url = null;
 const d = new Date();
-let date = [d.getMonth(), d.getDate(), d.getFullYear()];
+let date = [d.getMonth() +  1, d.getDate(), d.getFullYear()];
 date = date.join('/');
 
 function authorize() {
